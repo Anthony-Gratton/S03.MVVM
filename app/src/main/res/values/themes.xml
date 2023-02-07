@@ -18,5 +18,7 @@
     <style name="CustomTheme" parent="Theme.MVVM">
         <item name="android:background">@color/rich_black</item>
         <item name="android:textColor">@color/platinum</item>
+        <item name="colorPrimary">@color/bdazzled_blue</item>
+        <item name="colorOnPrimary">@color/platinum</item>
     </style>
 </resources>

@@ -157,26 +157,67 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.45" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/Revolution"
+        app:layout_constraintBottom_toBottomOf="@+id/sldRevolution"
         app:layout_constraintStart_toStartOf="@+id/imvPilot"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <com.google.android.material.slider.Slider
-        android:id="@+id/slider"
-        android:layout_width="100dp"
+        android:id="@+id/sldRevolution"
+        android:layout_width="0dp"
         android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:stepSize="1.0"
+        android:valueFrom="1.0"
+        android:valueTo="5.0"
+        android:value="3.0"
+        app:layout_constraintEnd_toStartOf="@+id/swtTraining"
         app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/swtTraining"
         android:layout_width="100dp"
         android:layout_height="25dp"
-        app:layout_constraintStart_toEndOf="@+id/slider"
+        android:layout_marginEnd="8dp"
+        android:text="@string/training"
+        android:textColor="@color/platinum"
+        app:layout_constraintBottom_toBottomOf="@+id/sldRevolution"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sldRevolution" />
+
+    <ImageView
+        android:id="@+id/imvPlanet"
+        android:layout_width="256dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStart"
+        app:srcCompat="@drawable/planet" />
+
+    <ImageView
+        android:id="@+id/imvRocket"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/rocket"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="451dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

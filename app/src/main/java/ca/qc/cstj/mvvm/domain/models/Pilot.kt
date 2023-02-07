@@ -1,6 +1,7 @@
 package ca.qc.cstj.mvvm.domain.models
 
 import ca.qc.cstj.mvvm.core.Constants
+import kotlin.math.max
 import kotlin.random.Random
 
 data class Pilot(var name: String, var life:Int, var cube: Int = 0) {
@@ -15,10 +16,10 @@ data class Pilot(var name: String, var life:Int, var cube: Int = 0) {
 
     fun fly(revolution: Int, isTraining: Boolean){
         if(!isTraining) {
-            _experience += revolution* Random.nextInt(1,2*level+1)
+            _experience += revolution* Random.nextInt(1,2*level+2)
             shield -= Random.nextInt(2)
             life -= Random.nextInt(0,2)
-            cube += Random.nextInt(0,2*level)
+            cube += Random.nextInt(0,2*level+1)
         }
         energy -= Random.nextInt(1,5)
     }
@@ -29,6 +30,6 @@ data class Pilot(var name: String, var life:Int, var cube: Int = 0) {
     fun recharge(){
         //todo: Add Microtransaction
         energy = Random.nextInt(0,10)
-        life = 10
+        life = max(10, life)
     }
 }
