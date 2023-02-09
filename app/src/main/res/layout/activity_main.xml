@@ -217,6 +217,9 @@
         android:id="@+id/imvRocket"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        app:layout_constraintCircle="@id/imvPlanet"
+        app:layout_constraintCircleAngle="69"
+        app:layout_constraintCircleRadius="120dp"
         app:srcCompat="@drawable/rocket"
         tools:layout_editor_absoluteX="45dp"
         tools:layout_editor_absoluteY="451dp" />

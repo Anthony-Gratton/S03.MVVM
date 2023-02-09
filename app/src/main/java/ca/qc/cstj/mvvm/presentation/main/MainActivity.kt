@@ -1,10 +1,14 @@
 package ca.qc.cstj.mvvm.presentation.main
 
+import android.animation.ValueAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.LinearInterpolator
 import androidx.activity.viewModels
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.lifecycleScope
 import ca.qc.cstj.mvvm.R
+import ca.qc.cstj.mvvm.core.Constants
 import ca.qc.cstj.mvvm.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.launchIn
@@ -15,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel : MainViewModel by viewModels()
 
+    private lateinit var rocketAnimation: ValueAnimator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                }
                MainUiState.Loading -> {
                     binding.btnStart.isEnabled = false
+                   rocketAnimation.start()
                }
                is MainUiState.Success -> {
                    with(binding){
@@ -54,7 +60,30 @@ class MainActivity : AppCompatActivity() {
         binding.btnStart.setOnClickListener {
             val revolution = binding.sldRevolution.value.toInt()
             val isTraining = binding.swtTraining.isChecked
+
+            createAnimation()
             viewModel.fly(revolution, isTraining)
+        }
+
+    }
+
+    private fun createAnimation(){
+
+        val layoutParams = binding.imvRocket.layoutParams as ConstraintLayout.LayoutParams
+        val repeatCount = binding.sldRevolution.value.toInt()
+        val startAngle = layoutParams.circleAngle
+        val endAngle = startAngle - 360
+
+        rocketAnimation = ValueAnimator.ofFloat(startAngle, endAngle)
+        rocketAnimation.repeatCount = repeatCount - 1
+        rocketAnimation.duration = Constants.REVOLUTION_DURATION
+        rocketAnimation.interpolator = LinearInterpolator()
+
+        rocketAnimation.addUpdateListener {
+            val animatedValue = it.animatedValue as Float
+            layoutParams.circleAngle = animatedValue
+            binding.imvRocket.layoutParams = layoutParams
+            binding.imvRocket.rotation = animatedValue -90
         }
 
     }
