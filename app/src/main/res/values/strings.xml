@@ -6,4 +6,5 @@
     <string name="start">start</string>
     <string name="msg_recharge">Low Energy, please recharge</string>
     <string name="recharge">Recharge (0.99 $)</string>
+    <string name="autre_application">Planet</string>
 </resources>
